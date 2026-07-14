@@ -1,0 +1,8 @@
+# Robots.txt for OmniCalc Classic SEO Keyword Suite
+# Designed to optimize indexation for 90,000+ math search phrases
+
+User-agent: *
+Allow: /
+
+# Canonical XML Sitemap
+Sitemap: https://ais-pre-k5knbps4ntmxxa2m5qium2-932553371137.asia-southeast1.run.app/sitemap.xml

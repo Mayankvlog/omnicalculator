@@ -1,0 +1,6 @@
+{
+  "name": "OmniCalc Classic",
+  "description": "An advanced, multi-theme responsive online calculator clone with Scientific, Fraction, Percentage, and Timer templates, featuring keyboard support and SEO metadata.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
