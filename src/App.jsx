@@ -8,6 +8,7 @@ import CalculatorFraction from './components/CalculatorFraction.jsx';
 import CalculatorPercentage from './components/CalculatorPercentage.jsx';
 import CalculatorTimer from './components/CalculatorTimer.jsx';
 import CalculatorHistory from './components/CalculatorHistory.jsx';
+import AdSlot from './components/AdSlot.jsx';
 import { playSound, toggleSound } from './utils/audio.js';
 import { LANGUAGES, TRANSLATIONS } from './utils/languages.js';
 import { motion, AnimatePresence } from 'motion/react';
@@ -485,6 +486,11 @@ export default function App() {
               copiedId={copiedId}
               t={t}
             />
+            <AdSlot
+              containerId="container-2f686497e01ebe4a1e90a3661ef9bf73"
+              scripts={['https://pl30777281.effectivecpmnetwork.com/2f686497e01ebe4a1e90a3661ef9bf73/invoke.js']}
+              className="mt-6 flex justify-center overflow-hidden"
+            />
           </div>
 
         </div>
@@ -527,6 +533,19 @@ export default function App() {
             </ul>
           </div>
         </section>
+
+        {/* Inline 160x300 iframe advertisement block */}
+        <AdSlot
+          scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
+          inline={`atOptions = {
+    'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };`}
+          className="mt-4 flex justify-center overflow-hidden"
+        />
 
       </main>
 
