@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { THEMES } from './types.js';
+import { THEMES, GEO_LONG_TAIL } from './types.js';
 import SEO from './components/SEO.jsx';
 import ThemeSelector from './components/ThemeSelector.jsx';
 import CalculatorSimple from './components/CalculatorSimple.jsx';
@@ -533,6 +533,25 @@ export default function App() {
             </ul>
           </div>
         </section>
+
+        {/* GEO long-tail keyword question-and-answer content block (English only) */}
+        {lang === 'en' && (
+          <section aria-label="Frequently Asked Questions" className="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 space-y-6 text-xs text-slate-400 leading-relaxed">
+            <div>
+              <h2 className="flex items-center gap-1.5 text-slate-200 font-bold mb-3">
+                <BookOpen className="w-4 h-4 text-teal-400" /> Frequently Asked Questions
+              </h2>
+              <h3 className="text-teal-300 font-bold mb-1.5">{GEO_LONG_TAIL.intro.q}</h3>
+              <p>{GEO_LONG_TAIL.intro.a}</p>
+            </div>
+            {(GEO_LONG_TAIL[mode] || []).map((item, i) => (
+              <div key={i}>
+                <h3 className="text-teal-300 font-bold mb-1.5">{item.q}</h3>
+                <p>{item.a}</p>
+              </div>
+            ))}
+          </section>
+        )}
 
         {/* Inline 160x300 iframe advertisement block */}
         <AdSlot
