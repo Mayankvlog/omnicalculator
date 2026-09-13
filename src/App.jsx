@@ -322,6 +322,32 @@ export default function App() {
           className="flex justify-center overflow-hidden"
         />
 
+        {/* Top ad row: 468x60 on the left, 160x300 on the right */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <AdSlot
+            scripts={['https://www.highrevenueformat.com/c4181d12b79ae5a6d07dd60671cf79b0/invoke.js']}
+            inline={`atOptions = {
+    'key' : 'c4181d12b79ae5a6d07dd60671cf79b0',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };`}
+            className="flex justify-center overflow-hidden"
+          />
+          <AdSlot
+            scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
+            inline={`atOptions = {
+    'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };`}
+            className="flex justify-center overflow-hidden"
+          />
+        </div>
+
         {/* Templates Mode Navigation Grid Cards */}
         <nav aria-label="Calculator Modes" className="grid grid-cols-2 md:grid-cols-5 gap-3">
           
@@ -426,32 +452,6 @@ export default function App() {
           </button>
 
         </nav>
-
-        {/* Inline 468x60 banner advertisement block */}
-        <AdSlot
-          scripts={['https://www.highrevenueformat.com/c4181d12b79ae5a6d07dd60671cf79b0/invoke.js']}
-          inline={`atOptions = {
-    'key' : 'c4181d12b79ae5a6d07dd60671cf79b0',
-    'format' : 'iframe',
-    'height' : 60,
-    'width' : 468,
-    'params' : {}
-  };`}
-          className="flex justify-center overflow-hidden"
-        />
-
-        {/* Inline 160x300 iframe advertisement block */}
-        <AdSlot
-          scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
-          inline={`atOptions = {
-    'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };`}
-          className="flex justify-center overflow-hidden"
-        />
 
         {/* Dual Column Layout: Calculator on Left, History Log on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
