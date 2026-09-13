@@ -1,32 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
-export default function AdSlot({ containerId = '', scripts = [], inline, className = '', style, async = true }) {
+function buildDoc({ containerId, scripts, inline }) {
+  const container = containerId
+    ? `<div id="${containerId}"></div>`
+    : '';
+  const inlineTag = inline
+    ? `<script type="text/javascript" data-cfasync="false">${inline}<\/script>`
+    : '';
+  const scriptsHtml = (scripts || [])
+    .map((src) => `<script src="${src}" type="text/javascript" data-cfasync="false"><\/script>`)
+    .join('\n');
+
+  return `<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;border:0;width:100%;height:100%;}body{display:flex;align-items:center;justify-content:center;overflow:hidden;}</style></head><body>${container}${inlineTag}\n${scriptsHtml}</body></html>`;
+}
+
+export default function AdSlot({ containerId = '', scripts = [], inline, className = '', style, width, height, title = 'Advertisement' }) {
   const hostRef = useRef(null);
-
-  useEffect(() => {
-    const host = hostRef.current;
-    if (!host) return;
-
-    if (inline) {
-      const s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.textContent = inline;
-      host.appendChild(s);
-    }
-
-    const scriptEls = (scripts || []).map((src) => {
-      const s = document.createElement('script');
-      s.src = src;
-      s.async = !!async;
-      s.setAttribute('data-cfasync', 'false');
-      host.appendChild(s);
-      return s;
-    });
-
-    return () => {
-      scriptEls.forEach((el) => el.parentNode?.removeChild(el));
-    };
-  }, []);
 
   return (
     <div
@@ -34,6 +23,20 @@ export default function AdSlot({ containerId = '', scripts = [], inline, classNa
       id={containerId || undefined}
       className={className}
       style={style}
-    />
+    >
+      <iframe
+        srcDoc={buildDoc({ containerId, scripts, inline })}
+        title={title}
+        scrolling="no"
+        frameBorder="0"
+        style={{
+          border: '0',
+          display: 'block',
+          width: width ? `${width}px` : '100%',
+          maxWidth: '100%',
+          height: height ? `${height}px` : '220px',
+        }}
+      />
+    </div>
   );
 }

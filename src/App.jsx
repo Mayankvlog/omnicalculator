@@ -309,8 +309,10 @@ export default function App() {
       {/* Primary Workspace */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 w-full space-y-8 flex flex-col relative z-10">
         
-        {/* Inline 728x90 leaderboard advertisement block (top banner) */}
+        {/* Inline 728x90 leaderboard advertisement block (top banner, shown on every page/mode) */}
         <AdSlot
+          width={728}
+          height={90}
           scripts={['https://www.highrevenueformat.com/c391fddb6bcf2cdce176a76720d24d5f/invoke.js']}
           inline={`atOptions = {
     'key' : 'c391fddb6bcf2cdce176a76720d24d5f',
@@ -319,13 +321,14 @@ export default function App() {
     'width' : 728,
     'params' : {}
   };`}
-          async={false}
           className="flex justify-center overflow-hidden"
         />
 
         {/* Top ad row: 468x60 on the left, 160x300 on the right */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <AdSlot
+            width={468}
+            height={60}
             scripts={['https://www.highrevenueformat.com/c4181d12b79ae5a6d07dd60671cf79b0/invoke.js']}
             inline={`atOptions = {
     'key' : 'c4181d12b79ae5a6d07dd60671cf79b0',
@@ -334,10 +337,11 @@ export default function App() {
     'width' : 468,
     'params' : {}
   };`}
-            async={false}
             className="flex justify-center overflow-hidden"
           />
           <AdSlot
+            width={160}
+            height={300}
             scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
             inline={`atOptions = {
     'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
@@ -346,7 +350,6 @@ export default function App() {
     'width' : 160,
     'params' : {}
   };`}
-            async={false}
             className="flex justify-center overflow-hidden"
           />
         </div>
@@ -523,6 +526,7 @@ export default function App() {
             <AdSlot
               containerId="container-2f686497e01ebe4a1e90a3661ef9bf73"
               scripts={['https://pl30777281.effectivecpmnetwork.com/2f686497e01ebe4a1e90a3661ef9bf73/invoke.js']}
+              height={380}
               className="mb-6 flex justify-center overflow-hidden"
             />
             <CalculatorHistory
