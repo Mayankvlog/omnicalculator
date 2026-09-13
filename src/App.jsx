@@ -309,6 +309,19 @@ export default function App() {
       {/* Primary Workspace */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 w-full space-y-8 flex flex-col relative z-10">
         
+        {/* Inline 728x90 leaderboard advertisement block (top banner) */}
+        <AdSlot
+          scripts={['https://www.highrevenueformat.com/c391fddb6bcf2cdce176a76720d24d5f/invoke.js']}
+          inline={`atOptions = {
+    'key' : 'c391fddb6bcf2cdce176a76720d24d5f',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };`}
+          className="flex justify-center overflow-hidden"
+        />
+
         {/* Templates Mode Navigation Grid Cards */}
         <nav aria-label="Calculator Modes" className="grid grid-cols-2 md:grid-cols-5 gap-3">
           
@@ -413,6 +426,19 @@ export default function App() {
           </button>
 
         </nav>
+
+        {/* Inline 468x60 banner advertisement block */}
+        <AdSlot
+          scripts={['https://www.highrevenueformat.com/c4181d12b79ae5a6d07dd60671cf79b0/invoke.js']}
+          inline={`atOptions = {
+    'key' : 'c4181d12b79ae5a6d07dd60671cf79b0',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };`}
+          className="flex justify-center overflow-hidden"
+        />
 
         {/* Dual Column Layout: Calculator on Left, History Log on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
