@@ -319,6 +319,7 @@ export default function App() {
     'width' : 728,
     'params' : {}
   };`}
+          async={false}
           className="flex justify-center overflow-hidden"
         />
 
@@ -333,6 +334,7 @@ export default function App() {
     'width' : 468,
     'params' : {}
   };`}
+            async={false}
             className="flex justify-center overflow-hidden"
           />
           <AdSlot
@@ -344,6 +346,7 @@ export default function App() {
     'width' : 160,
     'params' : {}
   };`}
+            async={false}
             className="flex justify-center overflow-hidden"
           />
         </div>

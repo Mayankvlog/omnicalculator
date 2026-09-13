@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export default function AdSlot({ containerId = '', scripts = [], inline, className = '', style }) {
+export default function AdSlot({ containerId = '', scripts = [], inline, className = '', style, async = true }) {
   const hostRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function AdSlot({ containerId = '', scripts = [], inline, classNa
     const scriptEls = (scripts || []).map((src) => {
       const s = document.createElement('script');
       s.src = src;
-      s.async = true;
+      s.async = !!async;
       s.setAttribute('data-cfasync', 'false');
       host.appendChild(s);
       return s;
