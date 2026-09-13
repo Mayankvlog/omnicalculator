@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { THEMES, GEO_LONG_TAIL } from './types.js';
 import SEO from './components/SEO.jsx';
-import ThemeSelector from './components/ThemeSelector.jsx';
 import CalculatorSimple from './components/CalculatorSimple.jsx';
-import CalculatorScientific from './components/CalculatorScientific.jsx';
-import CalculatorFraction from './components/CalculatorFraction.jsx';
-import CalculatorPercentage from './components/CalculatorPercentage.jsx';
-import CalculatorTimer from './components/CalculatorTimer.jsx';
 import CalculatorHistory from './components/CalculatorHistory.jsx';
 import AdSlot from './components/AdSlot.jsx';
 import { playSound, toggleSound } from './utils/audio.js';
 import { LANGUAGES, TRANSLATIONS } from './utils/languages.js';
 import { motion, AnimatePresence } from 'motion/react';
+
+const ThemeSelector = lazy(() => import('./components/ThemeSelector.jsx'));
+const CalculatorScientific = lazy(() => import('./components/CalculatorScientific.jsx'));
+const CalculatorFraction = lazy(() => import('./components/CalculatorFraction.jsx'));
+const CalculatorPercentage = lazy(() => import('./components/CalculatorPercentage.jsx'));
+const CalculatorTimer = lazy(() => import('./components/CalculatorTimer.jsx'));
 
 import { 
   Calculator, 
@@ -202,7 +203,7 @@ export default function App() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className={`absolute top-1/4 -left-12 w-72 h-72 rounded-full blur-3xl opacity-15 filter transition-colors duration-500 ${
+          className={`absolute top-1/4 -left-12 w-72 h-72 rounded-full blur-2xl opacity-15 filter transition-colors duration-500 will-change-transform ${
             currentThemeId === 'nordic' ? 'bg-teal-500' :
             currentThemeId === 'classic' ? 'bg-amber-400' :
             currentThemeId === 'cyberpunk' ? 'bg-fuchsia-500' :
@@ -220,7 +221,7 @@ export default function App() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className={`absolute bottom-1/4 -right-12 w-80 h-80 rounded-full blur-3xl opacity-15 filter transition-colors duration-500 ${
+          className={`absolute bottom-1/4 -right-12 w-80 h-80 rounded-full blur-2xl opacity-15 filter transition-colors duration-500 will-change-transform ${
             currentThemeId === 'nordic' ? 'bg-sky-500' :
             currentThemeId === 'classic' ? 'bg-orange-500' :
             currentThemeId === 'cyberpunk' ? 'bg-cyan-500' :
@@ -322,6 +323,8 @@ export default function App() {
     'params' : {}
   };`}
           className="flex justify-center overflow-hidden"
+          lazy
+          delay={800}
         />
 
         {/* Top ad row: 468x60 on the left, 160x300 on the right */}
@@ -338,6 +341,8 @@ export default function App() {
     'params' : {}
   };`}
             className="flex justify-center overflow-hidden"
+            lazy
+            delay={1200}
           />
           <AdSlot
             width={160}
@@ -351,6 +356,8 @@ export default function App() {
     'params' : {}
   };`}
             className="flex justify-center overflow-hidden"
+            lazy
+            delay={1600}
           />
         </div>
 
@@ -482,6 +489,9 @@ export default function App() {
                   />
                 )}
 
+                <Suspense fallback={
+                  <div className="w-full h-96 rounded-2xl animate-pulse bg-slate-900/30 border border-slate-800/50" />
+                }>
                 {mode === 'scientific' && (
                   <CalculatorScientific 
                     theme={activeTheme} 
@@ -517,6 +527,7 @@ export default function App() {
                     lang={lang}
                   />
                 )}
+                </Suspense>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -528,6 +539,8 @@ export default function App() {
               scripts={['https://pl30777281.effectivecpmnetwork.com/2f686497e01ebe4a1e90a3661ef9bf73/invoke.js']}
               height={380}
               className="mb-6 flex justify-center overflow-hidden"
+              lazy
+              delay={2000}
             />
             <CalculatorHistory
               history={history}
@@ -542,12 +555,14 @@ export default function App() {
         </div>
 
         {/* Dynamic theme switcher layout section */}
-        <ThemeSelector
-          currentThemeId={currentThemeId}
-          onSelectTheme={setCurrentThemeId}
-          cardBg={activeTheme.cardBg}
-          t={t}
-        />
+        <Suspense fallback={<div className="h-20 animate-pulse rounded-2xl bg-slate-900/20" />}>
+          <ThemeSelector
+            currentThemeId={currentThemeId}
+            onSelectTheme={setCurrentThemeId}
+            cardBg={activeTheme.cardBg}
+            t={t}
+          />
+        </Suspense>
 
         {/* Informative SEO and Documentation Text Boxes */}
         <section aria-label="Information Panel" className="bg-slate-900/20 border border-slate-800/80 rounded-2xl p-6 space-y-5 text-xs text-slate-400 leading-relaxed md:grid md:grid-cols-2 md:gap-x-8 md:space-y-0">
