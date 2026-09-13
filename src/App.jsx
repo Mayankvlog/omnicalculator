@@ -478,6 +478,11 @@ export default function App() {
 
           {/* History Column on Widescreens */}
           <div className="lg:col-span-1 h-full">
+            <AdSlot
+              containerId="container-2f686497e01ebe4a1e90a3661ef9bf73"
+              scripts={['https://pl30777281.effectivecpmnetwork.com/2f686497e01ebe4a1e90a3661ef9bf73/invoke.js']}
+              className="mb-6 flex justify-center overflow-hidden"
+            />
             <CalculatorHistory
               history={history}
               theme={activeTheme}
@@ -486,14 +491,22 @@ export default function App() {
               copiedId={copiedId}
               t={t}
             />
-            <AdSlot
-              containerId="container-2f686497e01ebe4a1e90a3661ef9bf73"
-              scripts={['https://pl30777281.effectivecpmnetwork.com/2f686497e01ebe4a1e90a3661ef9bf73/invoke.js']}
-              className="mt-6 flex justify-center overflow-hidden"
-            />
           </div>
 
         </div>
+
+        {/* Inline 160x300 iframe advertisement block */}
+        <AdSlot
+          scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
+          inline={`atOptions = {
+    'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };`}
+          className="mt-4 flex justify-center overflow-hidden"
+        />
 
         {/* Dynamic theme switcher layout section */}
         <ThemeSelector
@@ -552,19 +565,6 @@ export default function App() {
             ))}
           </section>
         )}
-
-        {/* Inline 160x300 iframe advertisement block */}
-        <AdSlot
-          scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
-          inline={`atOptions = {
-    'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };`}
-          className="mt-4 flex justify-center overflow-hidden"
-        />
 
       </main>
 
