@@ -440,6 +440,19 @@ export default function App() {
           className="flex justify-center overflow-hidden"
         />
 
+        {/* Inline 160x300 iframe advertisement block */}
+        <AdSlot
+          scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
+          inline={`atOptions = {
+    'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };`}
+          className="flex justify-center overflow-hidden"
+        />
+
         {/* Dual Column Layout: Calculator on Left, History Log on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           
@@ -520,19 +533,6 @@ export default function App() {
           </div>
 
         </div>
-
-        {/* Inline 160x300 iframe advertisement block */}
-        <AdSlot
-          scripts={['https://www.highperformanceformat.com/2f841fabecfcc7f340dcb0ee0fbfd3b1/invoke.js']}
-          inline={`atOptions = {
-    'key' : '2f841fabecfcc7f340dcb0ee0fbfd3b1',
-    'format' : 'iframe',
-    'height' : 300,
-    'width' : 160,
-    'params' : {}
-  };`}
-          className="mt-4 flex justify-center overflow-hidden"
-        />
 
         {/* Dynamic theme switcher layout section */}
         <ThemeSelector
