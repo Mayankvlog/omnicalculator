@@ -190,38 +190,18 @@ export default function App() {
       {/* Dynamic SEO Injector updating tags */}
       <SEO mode={mode} />
 
-      {/* Aesthetic Smooth Ambient Floating Blobs (Aura Effect) */}
+      {/* Aesthetic Smooth Ambient Floating Blobs (Aura Effect) - CSS compositor loop */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div
-          animate={{
-            x: [0, 40, -30, 0],
-            y: [0, -30, 40, 0],
-            scale: [1, 1.12, 0.92, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className={`absolute top-1/4 -left-12 w-72 h-72 rounded-full blur-2xl opacity-15 filter transition-colors duration-500 will-change-transform ${
+        <div
+          className={`blob-anim-1 absolute top-1/4 -left-12 w-72 h-72 rounded-full blur-2xl opacity-15 filter transition-colors duration-500 ${
             currentThemeId === 'nordic' ? 'bg-teal-500' :
             currentThemeId === 'classic' ? 'bg-amber-400' :
             currentThemeId === 'cyberpunk' ? 'bg-fuchsia-500' :
             currentThemeId === 'forest' ? 'bg-orange-600' : 'bg-rose-400'
           }`}
         />
-        <motion.div
-          animate={{
-            x: [0, -40, 30, 0],
-            y: [0, 50, -20, 0],
-            scale: [1, 0.9, 1.15, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className={`absolute bottom-1/4 -right-12 w-80 h-80 rounded-full blur-2xl opacity-15 filter transition-colors duration-500 will-change-transform ${
+        <div
+          className={`blob-anim-2 absolute bottom-1/4 -right-12 w-80 h-80 rounded-full blur-2xl opacity-15 filter transition-colors duration-500 ${
             currentThemeId === 'nordic' ? 'bg-sky-500' :
             currentThemeId === 'classic' ? 'bg-orange-500' :
             currentThemeId === 'cyberpunk' ? 'bg-cyan-500' :
@@ -324,7 +304,7 @@ export default function App() {
   };`}
           className="flex justify-center overflow-hidden"
           lazy
-          delay={800}
+          delay={3000}
         />
 
         {/* Top ad row: 468x60 on the left, 160x300 on the right */}
@@ -342,7 +322,7 @@ export default function App() {
   };`}
             className="flex justify-center overflow-hidden"
             lazy
-            delay={1200}
+            delay={4000}
           />
           <AdSlot
             width={160}
@@ -357,7 +337,7 @@ export default function App() {
   };`}
             className="flex justify-center overflow-hidden"
             lazy
-            delay={1600}
+            delay={5000}
           />
         </div>
 
@@ -540,7 +520,7 @@ export default function App() {
               height={380}
               className="mb-6 flex justify-center overflow-hidden"
               lazy
-              delay={2000}
+              delay={6000}
             />
             <CalculatorHistory
               history={history}

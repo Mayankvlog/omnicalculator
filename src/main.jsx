@@ -25,7 +25,7 @@ const loadAdNetwork = () => {
 };
 
 if ('requestIdleCallback' in window) {
-  window.requestIdleCallback(loadAdNetwork, { timeout: 2000 });
+  window.requestIdleCallback(loadAdNetwork, { timeout: 5000 });
 } else {
-  setTimeout(loadAdNetwork, 1500);
+  setTimeout(loadAdNetwork, 3000);
 }

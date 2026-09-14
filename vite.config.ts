@@ -13,13 +13,18 @@ export default defineConfig(() => {
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      // Do not modifyâ file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
     build: {
       target: 'es2020',
+      // Inline small assets (favicon, etc.) as data URLs to cut extra requests.
+      assetsInlineLimit: 4096,
+      cssCodeSplit: true,
+      modulePreload: { polyfill: false },
+      reportCompressedSize: true,
       // Split third-party libs into stable cacheable chunks so the initial
       // HTML + CSS can paint while JS loads lazily.
       rollupOptions: {

@@ -40,10 +40,20 @@ export default function AdSlot({
       setVisible(true);
     };
 
+    // Schedule activation in idle time so the app UI paints first,
+    // never blocking initial render or interaction.
+    const activateWhenIdle = () => {
+      if (typeof window.requestIdleCallback !== 'undefined') {
+        window.requestIdleCallback(activate, { timeout: delay || 4000 });
+      } else {
+        activate();
+      }
+    };
+
     // Optionally wait before even attempting to render the iframe so the
     // app itself always paints first.
     if (delay > 0) {
-      timer = setTimeout(activate, delay);
+      timer = setTimeout(activateWhenIdle, delay);
     }
 
     if (lazy && hostRef.current && typeof IntersectionObserver !== 'undefined') {
@@ -51,10 +61,10 @@ export default function AdSlot({
         (entries) => {
           if (entries.some((entry) => entry.isIntersecting)) {
             if (observer) observer.disconnect();
-            activate();
+            activateWhenIdle();
           }
         },
-        { rootMargin: '200px 0px' }
+        { rootMargin: '300px 0px' }
       );
       observer.observe(hostRef.current);
     }
@@ -71,7 +81,11 @@ export default function AdSlot({
       ref={hostRef}
       id={containerId || undefined}
       className={className}
-      style={style}
+      style={{
+        ...style,
+        minWidth: width ? `${width}px` : undefined,
+        minHeight: height ? `${height}px` : undefined,
+      }}
     >
       {visible && (
         <iframe
@@ -80,6 +94,9 @@ export default function AdSlot({
           loading="lazy"
           scrolling="no"
           frameBorder="0"
+          tabIndex="-1"
+          aria-hidden="true"
+          sandbox="allow-scripts allow-same-origin"
           style={{
             border: '0',
             display: 'block',
