@@ -10,8 +10,6 @@ root.render(
   </StrictMode>,
 );
 
-// Load the site-wide ad network script only after the app has mounted and the
-// main thread is idle, so it never blocks the initial paint.
 const loadAdNetwork = () => {
   try {
     const s = document.createElement('script');
@@ -25,7 +23,7 @@ const loadAdNetwork = () => {
 };
 
 if ('requestIdleCallback' in window) {
-  window.requestIdleCallback(loadAdNetwork, { timeout: 5000 });
+  window.requestIdleCallback(loadAdNetwork, { timeout: 1500 });
 } else {
-  setTimeout(loadAdNetwork, 3000);
+  setTimeout(loadAdNetwork, 1000);
 }

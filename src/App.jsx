@@ -5,7 +5,7 @@ import CalculatorSimple from './components/CalculatorSimple.jsx';
 import CalculatorHistory from './components/CalculatorHistory.jsx';
 import AdSlot from './components/AdSlot.jsx';
 import { playSound, toggleSound } from './utils/audio.js';
-import { LANGUAGES, TRANSLATIONS } from './utils/languages.js';
+import { LANGUAGES } from './utils/languages-list.js';
 import { motion, AnimatePresence } from 'motion/react';
 
 const ThemeSelector = lazy(() => import('./components/ThemeSelector.jsx'));
@@ -32,10 +32,21 @@ import {
 } from 'lucide-react';
 
 export default function App() {
-  // Language translation state
+  // Language translation state - lazy loaded to reduce initial bundle
   const [lang, setLang] = useState('en');
+  const [translations, setTranslations] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    import('./utils/languages.js').then((mod) => {
+      if (!cancelled) setTranslations(mod.TRANSLATIONS);
+    });
+    return () => { cancelled = true; };
+  }, []);
+
   const t = (key) => {
-    return TRANSLATIONS[lang]?.[key] || TRANSLATIONS['en']?.[key] || key;
+    if (!translations) return key;
+    return translations[lang]?.[key] || translations['en']?.[key] || key;
   };
 
   // Application Mode/Template state
@@ -304,7 +315,7 @@ export default function App() {
   };`}
           className="flex justify-center overflow-hidden"
           lazy
-          delay={3000}
+          delay={2000}
         />
 
         {/* Top ad row: 468x60 on the left, 160x300 on the right */}
@@ -322,7 +333,7 @@ export default function App() {
   };`}
             className="flex justify-center overflow-hidden"
             lazy
-            delay={4000}
+            delay={2000}
           />
           <AdSlot
             width={160}
@@ -337,7 +348,7 @@ export default function App() {
   };`}
             className="flex justify-center overflow-hidden"
             lazy
-            delay={5000}
+            delay={2000}
           />
         </div>
 
@@ -520,7 +531,7 @@ export default function App() {
               height={380}
               className="mb-6 flex justify-center overflow-hidden"
               lazy
-              delay={6000}
+              delay={2000}
             />
             <CalculatorHistory
               history={history}

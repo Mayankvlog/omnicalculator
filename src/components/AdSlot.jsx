@@ -44,7 +44,7 @@ export default function AdSlot({
     // never blocking initial render or interaction.
     const activateWhenIdle = () => {
       if (typeof window.requestIdleCallback !== 'undefined') {
-        window.requestIdleCallback(activate, { timeout: delay || 4000 });
+        window.requestIdleCallback(activate, { timeout: delay || 1500 });
       } else {
         activate();
       }
@@ -64,7 +64,7 @@ export default function AdSlot({
             activateWhenIdle();
           }
         },
-        { rootMargin: '300px 0px' }
+        { rootMargin: '200px 0px' }
       );
       observer.observe(hostRef.current);
     }
